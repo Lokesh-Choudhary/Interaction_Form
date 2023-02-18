@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Interaction Form</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+            display: block;
+            text-align: center;
+        }
+        .form-container {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            background-color: bisque;
+            border: solid 2px;
+            margin: auto;
+            margin-top: 100px;
+            margin-left: 200px;
+            margin-right: 200px;
+
+        }
+    </style>
+</head>
+<body>
+    <h1><b><em><u>Live Interaction Form</u></em></b></h1>
+    <div class="form-container">
+    <h2><b><u><em>Fill The Form To Get in Touch With Me</em></u></b></h2>
+    <label for="">First Name : </label><input type="text" id="fname" autofocus><br><br>
+    <label for="">Last Name :&nbsp;&nbsp;</label><input type="text" id="lname" autofocus><br><br>
+    <label for="">Email : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="email"  id="email" autofocus><br><br>
+    <label for="">&nbsp;Phone :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" id="phone" autofocus><br><br>
+    <label for="">&nbsp;&nbsp;&nbsp;City :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" id="city" autofocus><br><br>
+    <label for="">&nbsp;&nbsp;State :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="text" id="state" autofocus><br><br>
+   
+    <button id="btn">Submit</button><br><br>
+    </div>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyCIZUhQPf1cYNQwt_a9sTU9yGlQFzzKTH0",
+          authDomain: "infor-d2056.firebaseapp.com",
+          projectId: "infor-d2056",
+          storageBucket: "infor-d2056.appspot.com",
+          messagingSenderId: "445173118616",
+          appId: "1:445173118616:web:6c94bd103c127d2fc9c2ed"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        import {getDatabase,ref,set}
+        from  "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"
+
+        const db = getDatabase();
+
+        
+
+        var name = document.getElementById("fname");
+        var Lname = document.getElementById("lname");
+        var Email= document.getElementById("email");
+        var Phone = document.getElementById("phone");
+        var City = document.getElementById("city");
+        var state = document.getElementById("state");
+
+        var btn = document.getElementById("btn");
+
+        function Submitbtn(){
+            set(ref(db,"index/" +fname.value),{
+                Fname : fname.value,
+                Lname : lname.value,
+                Email : email.value,
+                Phone : phone.value,
+                City : city.value,
+                State : state.value
+            })
+            .then(()=>{
+                alert("You're Details Are Sent Successfully, We Will Contact You Soon!");
+            })
+            .catch((error)=>{
+                alert("Your Details are Not Sent Succesfully!"+error);
+            })
+        }
+        btn.addEventListener("click",Submitbtn)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </script>
+    
+</body>
+</html>
